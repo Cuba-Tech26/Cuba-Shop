@@ -70,7 +70,7 @@ export default function Checkout() {
       if (res.status === 201) {
         toast.success("order succssfully created");
         setCartItems([]);
-        navigate(`/account/${currentUser?.user?.username}/orders`);
+        navigate(`/account/${currentUser?.user?.username}/orders/${res.data?._id}`);
       }
     } catch (error) {
       console.log(error);

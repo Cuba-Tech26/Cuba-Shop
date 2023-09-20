@@ -1,13 +1,30 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Root } from "../components";
-import { Home, Collections, Categories, ProductDetails, Bag, Checkout, Account, Orders } from "../pages";
-
+import { Root, Error } from "../components";
+import {
+  Home,
+  Collections,
+  Categories,
+  ProductDetails,
+  Bag,
+  Checkout,
+  Account,
+  Orders,
+  OrderId,
+  SavedItems,
+  Profile,
+  ShopOrders,
+  ManageProduct,
+  CreateProduct,
+  Search,
+} from "../pages";
+import ProtectedRoutes from "./ProtectedRoutes";
 
 export default function Routespath() {
   const router = createBrowserRouter([
     {
       path: "/",
       element: <Root />,
+      errorElement: <Error/>,
       children: [
         {
           path: "/",
@@ -24,8 +41,8 @@ export default function Routespath() {
             {
               path: ":collectionName/:slug",
               element: <ProductDetails />,
-            }
-          ]
+            },
+          ],
         },
         {
           path: "bag",
@@ -33,18 +50,52 @@ export default function Routespath() {
         },
         {
           path: "checkout",
-          element: <Checkout/>
+          element: <Checkout />,
+        },
+        {
+          path: "search",
+          element: <Search />,
         },
         {
           path: "account",
-          element: <Account/>,
+          element: (
+            <ProtectedRoutes>
+              <Account />
+            </ProtectedRoutes>
+          ),
           children: [
             {
               path: ":username/orders",
               element: <Orders />,
+              children: [
+                {
+                  path: ":orderId",
+                  element: <OrderId />,
+                },
+              ],
+            },
+            {
+              path: ":username/saveditems",
+              element: <SavedItems />,
+            },
+            {
+              path: "user-profile/:username",
+              element: <Profile />,
+            },
+            {
+              path: "allorders",
+              element: <ShopOrders />,
+            },
+            {
+              path: "manage-product",
+              element: <ManageProduct />,
+            },
+            {
+              path: "add-new-product",
+              element: <CreateProduct />,
             },
           ],
-        }
+        },
       ],
     },
   ]);

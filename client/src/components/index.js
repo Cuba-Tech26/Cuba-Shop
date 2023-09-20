@@ -7,6 +7,8 @@ import PreOrder from "./PreOrder";
 import Headings from "./Headings";
 import ImageModal from "./ImageModal";
 import Paypal from "./Paypal";
+import UpdateProfile from "./UpdateProfile";
+import Error from "./Error";
 
 export {
   Root,
@@ -18,4 +20,6 @@ export {
   Headings,
   ImageModal,
   Paypal,
+  UpdateProfile,
+  Error
 };

@@ -13,7 +13,7 @@ export default function Categories() {
     collectionName
   );
 
-  console.log("get", data);
+  // console.log("get", data);
   useEffect(()=> {
     document.title = collectionName
   }, [collectionName])

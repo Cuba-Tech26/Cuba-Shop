@@ -140,11 +140,11 @@ export default function ProductDetails() {
                   color={
                     state?.product?.likes?.includes(currentUser?.user?._id)
                       ? "red"
-                      : ""
+                      : " "
                   }
                   onClick={
                     state?.product?.likes?.includes(currentUser?.user?._id)
-                      ? handleDislike
+                      ? handleDislike 
                       : handleLike
                   }
                 />
@@ -154,7 +154,7 @@ export default function ProductDetails() {
               </p>
               <Button
                 variant="dark"
-                className="mt-3 w-100 rounded-0"
+                className="mt-3 w-100 rounded-5"
                 onClick={() => addToCart(state?.product)}
               >
                 ADD TO BAG

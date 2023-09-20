@@ -25,6 +25,7 @@ export default function Bag() {
   useEffect(() => {
     document.title = "Your Bag";
   }, []);
+  
   return (
     <PageLayout>
       <Headings title="Bag" />
@@ -107,7 +108,7 @@ export default function Bag() {
       <div className="d-flex justify-content-lg-end mt-4">
         <div>
           <h1>
-            <span className="fs-4">Sobtotal</span>
+            <span className="fs-4">Subtotal</span>
             <span className="fw-bold">{formatCurrency(priceTotal)}</span>
           </h1>
           <span className="fs-6 mb-4">
@@ -116,7 +117,7 @@ export default function Bag() {
           <div className="mt-3">
             <Button
               variant="dark"
-              className="fw-bold w-100 rounded-0"
+              className="fw-bold w-100 rounded-5"
               onClick={() =>
                 currentUser
                   ? navigate("/checkout")

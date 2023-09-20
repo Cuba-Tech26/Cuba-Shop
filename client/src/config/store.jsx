@@ -1,6 +1,15 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
+import jwt_decode from "jwt-decode"
+import {
+  AiOutlineUnorderedList,
+  AiOutlineUser,
+  AiOutlineShoppingCart,
+} from "react-icons/ai";
+import { BsFillBriefcaseFill } from "react-icons/bs";
+import { FiSettings, FiServer } from "react-icons/fi";
+
 
 const Context = createContext();
 
@@ -15,9 +24,7 @@ export const StateContext = ({ children }) => {
   const [show, setShow] = useState(false)
   const [paymentMethod, setPaymentMethod] = useState(paymentData)
   const [shippingDetails, setShippingDetails] = useState(shippingData)
-
-  console.log("cu", currentUser);
-  console.log("ci", cartItems);
+  
 
   //save user to local storage
   useEffect(() => {
@@ -25,6 +32,22 @@ export const StateContext = ({ children }) => {
       localStorage.setItem("userinfo", JSON.stringify(currentUser));
     }
   }, [currentUser]);
+
+  //check token expiration
+  useEffect(()=> {
+   const checkJwtExpiry = async()=> {
+    const token = JSON.parse(localStorage.getItem("userinfo"))
+    if(token) {
+      const {exp} = jwt_decode(token.access_token)
+      if(exp * 1000 < Date.now()) {
+        localStorage.removeItem("userinfo")
+        location.replace("/")
+        toast.error("Token expired, pls sign in to get access")
+      }
+    }
+   }
+   checkJwtExpiry()
+  }, [])
 
 
   //save payment method
@@ -136,6 +159,42 @@ export const StateContext = ({ children }) => {
     toast.success("Logged out successfully");
   };
 
+  const links = [
+    {
+      name: "Orders",
+      path: `${currentUser?.user?.username}/orders`,
+      icon: <AiOutlineUnorderedList />,
+    },
+    {
+      name: "Profile",
+      path: `user-profile/${currentUser?.user?.username}`,
+      icon: <AiOutlineUser />,
+    },
+    {
+      name: "Saved Items",
+      path: `${currentUser?.user?.username}/saveditems`,
+      icon: <AiOutlineShoppingCart />,
+    },
+  ];
+
+  const adminLinks = [
+    {
+      name: "Shop orders",
+      path: "allorders",
+      icon: <BsFillBriefcaseFill />,
+    },
+    {
+      name: "Manage product",
+      path: "manage-product",
+      icon: <FiSettings />,
+    },
+    {
+      name: "Add product",
+      path: "add-new-product",
+      icon: <FiServer />,
+    },
+  ];
+
   return (
     <Context.Provider
       value={{
@@ -155,6 +214,8 @@ export const StateContext = ({ children }) => {
         setPaymentMethod, 
         shippingDetails, 
         setShippingDetails,
+        links,
+        adminLinks,
         
 
       }}

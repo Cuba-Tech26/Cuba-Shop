@@ -6,7 +6,7 @@ export default function Footer() {
       <div className='border-0 border-top border-dark mb-3' />
       <div className='d-flex justify-content-between align-items-center'>
         <span>&copy; 2023 Shop. All Rights Reserved.</span>
-        <a href='https://github.com/'>
+        <a href='https://github.com/'target='_blank' rel="noreferrer">
           <AiFillGithub size='24px' color='black'/>
         </a>
       </div>

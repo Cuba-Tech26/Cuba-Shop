@@ -17,7 +17,7 @@ export default function Navbar() {
   const navigate = useNavigate();
   const { data } = useFetchData(getCategories);
   const { currentUser, logOut, } = useStore();
-  //console.log("nav", data);
+ 
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -60,7 +60,7 @@ export default function Navbar() {
                   ))}
                 </Dropdown.Menu>
               </Dropdown>
-              <div className="d-flex align-items-center gap-4 ms-auto">
+              <div className="d-flex align-items-center gap-2 ms-auto gap-lg-4">
                 <BsSearch
                   style={{ cursor: "pointer" }}
                   size="24px"
@@ -93,14 +93,14 @@ export default function Navbar() {
                       </Dropdown.Item>
                       <Dropdown.Item
                         as={NavLink}
-                        to={`account/user-profile/${currentUser?.user?.username}/ Orders`}
+                        to={`account/${currentUser?.user?.username}/orders`}
                       >
-                        orders
+                        Orders
                       </Dropdown.Item>
                       <Dropdown.Item
                         as={NavLink}
-                        to={`account/user-profile/${currentUser?.user?.username}/ Whishlist`}>
-                          Whishlist
+                        to={`account/${currentUser?.user?.username}/saveditems`}>
+                         Saved items
                         </Dropdown.Item>
                       <Dropdown.Item onClick={logOut}>logout</Dropdown.Item>
                     </Dropdown.Menu>

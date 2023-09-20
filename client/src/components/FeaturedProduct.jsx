@@ -98,7 +98,7 @@ export default function FeaturedProduct({ data }) {
                   </Link>
                   <h1 className="fs-4">{formatCurrency(product.price)}</h1>
                   <Button
-                    variant="dark rounded-0"
+                    variant="dark rounded-4"
                     onClick={() => addToCart(product)}
                   >
                     ADD TO BAG
