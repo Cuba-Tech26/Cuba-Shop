@@ -9,7 +9,7 @@ import Orders from "./Dashboard/user/Orders";
 import OrderId from "./Dashboard/user/OrderId";
 import SavedItems from "./Dashboard/user/SavedItems";
 import Profile from "./Dashboard/user/Profile";
-import ShopOrders from "./Dashboard/Admin/Shoporders";
+import ShopOrders from "./Dashboard/Admin/ShopOrders";
 import ManageProduct from "./Dashboard/Admin/ManageProduct";
 import CreateProduct from "./Dashboard/Admin/CreateProduct";
 import Search from "./Search";
