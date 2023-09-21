@@ -6,7 +6,7 @@ import {
   getOrderDetail,
   getUserOrder,
   trackOrders,
-} from "../controllers/order.js";
+} from "../controllers/Order.js";
 
 const router = express.Router();
 
