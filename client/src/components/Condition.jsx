@@ -8,12 +8,12 @@ import useScroll from "../hooks/scroll";
 export default function Condition({ data }) {
     const {scroll, scrollRef} = useScroll();
 
-    //  console.log(scrollRef);
+   
 
   
   const filterByNew = data.filter((product) => product.condition === "New");
   
-  // console.log("condition", data);
+ 
 
 
   return (

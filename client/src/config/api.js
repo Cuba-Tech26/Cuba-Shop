@@ -7,7 +7,7 @@ export const getCategories = async () => {
   return res;
 };
 
-export const getIsFeaturedProduts = async () => {
+export const getIsFeaturedProducts = async () => {
   const res = await instance.get("/api/v1/products/featured/product");
   return res;
 };

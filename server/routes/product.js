@@ -8,7 +8,7 @@ import {
   searchProducts,
   likeProduct,
   dislikeProduct,
-  getIsFeaturedProduts,
+  getIsFeaturedProducts,
   getSavedProducts,
   deleteProduct,
   createNewProduct
@@ -27,7 +27,7 @@ router.get("/", getAllProducts);
 router.get("/:categoryName", getProductsByCategory);
 router.get("/title/:slugTitle", getOneProduct)
 router.get("/search/product", searchProducts)
-router.get("/featured/product",getIsFeaturedProduts)
+router.get("/featured/product",getIsFeaturedProducts)
 router.get("/usersaved/:username", verifyToken, getSavedProducts)
 
 //put

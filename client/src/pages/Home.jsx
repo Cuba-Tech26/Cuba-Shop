@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import useFetchData from "../hooks/fetchData";
 import { useEffect } from "react";
-import { getIsFeaturedProduts, getProductsByCondition } from "../config/api.js";
+import { getIsFeaturedProducts, getProductsByCondition } from "../config/api.js";
 import Loader from "../utils/Loader";
 import { FeaturedProduct, Condition, PreOrder } from "../components";
 
 export default function Home() {
-  const { data: featured, error, loading } = useFetchData(getIsFeaturedProduts);
+  const { data: featured, error, loading } = useFetchData(getIsFeaturedProducts);
   //  console.log("featured", featured);
   const { data: condition } = useFetchData(getProductsByCondition);
 

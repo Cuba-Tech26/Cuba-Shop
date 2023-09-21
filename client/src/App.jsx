@@ -1,4 +1,4 @@
-// import Routespath from "./routes/Routespath"
+
 import { StateContext } from "./config/store"
 import {Toaster} from "react-hot-toast"
 import {PayPalScriptProvider} from "@paypal/react-paypal-js"
@@ -10,7 +10,7 @@ const Routes = lazy(() => import("./routes/Routespath"))
 function Load() {
 return (
 <div className="d-flex vh-100 justify-content-center text-danger">
-  <Loader title="Welcome to CUBA COLLECTIONS" />
+  <Loader title="Welcome to CUBA Collections" />
 </div>
 )
 }

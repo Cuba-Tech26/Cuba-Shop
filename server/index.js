@@ -19,9 +19,9 @@ app.use("/api/v1/products", productRoutes);
 app.use("/api/v1/categories", categoryRoutes);
 app.use("/api/v1/orders", orderRoutes);
 
-app.use((err, req, res) => {
-  const status = err.status || 500;
-  const message = err.message || "Something went wrong";
+app.use((error, _req, res) => {
+  const status = error.status || 500;
+  const message = error.message || "Something went wrong";
   return res.status(status).json({
     success: false,
     status,
@@ -31,7 +31,8 @@ app.use((err, req, res) => {
 
 const PORT = process.env.PORT || 8000; //default host port or local port
 
-connectToDB().then(() => {
+connectToDB()
+  .then(() => {
     try {
       app.listen(PORT, () => {
         console.log(`Server connected to port ${PORT}`);
@@ -39,6 +40,7 @@ connectToDB().then(() => {
     } catch (error) {
       console.log("Could not connect to server");
     }
-  }).catch((error) => {
+  })
+   .catch((_error) => {
     console.log("Invalid database connection");
   });

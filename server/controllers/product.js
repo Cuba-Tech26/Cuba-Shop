@@ -2,15 +2,15 @@ import Product from "../models/product.js";
 import { customError } from "../config/error.js";
 import data from "../sampledata.js";
 import User from "../models/auth.js";
-//send sampledata product to mongodb
 
-export const sendProductsToDB = async (req, res) => {
+//send sampledata product to mongodb
+export const sendProductsToDB = async (_req, res) => {
   await Product.deleteMany({});
   const products = await Product.insertMany(data.products);
   res.status(200).json(products);
 };
 
-export const getIsFeaturedProduts = async (req, res, next) => {
+export const getIsFeaturedProducts = async (req, res, next) => {
   try {
     const products = await Product.find({ isFeatured: true });
     if (!products)
@@ -25,8 +25,6 @@ export const getProductsByCondition = async (req, res, next) => {
   try {
     const newProducts = await Product.find({ condition: "New" });
     const preOrder = await Product.find({ condition: "Preorder" });
-    //  This can also achieved by using array method.
-    //e.g, const allProducts = [newProduct, preOrder]
     res.status(200).json(newProducts.concat(preOrder));
   } catch (error) {
     res.status(500).json(error);
@@ -98,37 +96,35 @@ export const dislikeProduct = async (req, res) => {
   }
 };
 
-export const getSavedProducts = async(req, res)=> {
-  const {username} = req.params
-  const id = req.user.id
+export const getSavedProducts = async (req, res) => {
+  const { username } = req.params;
+  const id = req.user.id;
   try {
-    const user = await User.findOne({username})
-    if(!user) return next(customError(500, "Can't find user"))
+    const user = await User.findOne({ username });
+    if (!user) return next(customError(500, "Can't find user"));
     if (user) {
-      const liked = await Product.find({likes: id})
-      res.status(200).json(liked)
+      const liked = await Product.find({ likes: id });
+      res.status(200).json(liked);
     }
   } catch (error) {
     res.status(500).json(error);
   }
-}
+};
 
-export const deleteProduct = async(req, res) => {
+export const deleteProduct = async (req, res) => {
   try {
-    await Product.findByIdAndRemove(req.params.id)
-    res.status(200).json("Product deleted successfully")
+    await Product.findByIdAndRemove(req.params.id);
+    res.status(200).json("Product deleted successfully");
   } catch (error) {
-    res.status(500).json(error)
-    
+    res.status(500).json(error);
   }
-}
+};
 
-export const createNewProduct = async(req, res)=> {
-try {
-   const product = await Product.insertMany(req.body)
-   res.status(201).json(product)
-} catch (error) {
-  res.status(500).json(error)
-  
-}
-}
+export const createNewProduct = async (req, res) => {
+  try {
+    const product = await Product.insertMany(req.body);
+    res.status(201).json(product);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};

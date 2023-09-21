@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import mongooseSlugPlugin from "mongoose-slug-plugin";
+// import mongooseSlugPlugin from "mongoose-slug-plugin";
 
 const productSchema = new mongoose.Schema(
   {
